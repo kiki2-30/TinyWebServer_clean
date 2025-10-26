@@ -129,7 +129,7 @@ void WebServer::eventListen()
     setsockopt(m_listenfd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
     ret = bind(m_listenfd, (struct sockaddr *)&address, sizeof(address));
     assert(ret >= 0);
-    ret = listen(m_listenfd, 5);
+    ret = listen(m_listenfd, 1024);//修改以进行压测 这个跟半连接队列大小有关
     assert(ret >= 0);
 
     utils.init(TIMESLOT);
